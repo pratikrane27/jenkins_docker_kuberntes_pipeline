@@ -20,7 +20,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker -t prince2796/spring-docker-kubernetes . "
+                sh "docker build -t prince2796/spring-docker-kubernetes . "
             }
         }
         stage("Docker push") {
