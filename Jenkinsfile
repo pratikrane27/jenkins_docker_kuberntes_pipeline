@@ -25,10 +25,10 @@ pipeline {
         }
         stage("Docker push") {
             steps {
-                withCredentials([string(credentialsId: 'Docker_hub_cred', variable: '')]) {
-                sh "docker login -u prince2796 -p ${Docker_hub_cred} "
+                withCredentials([string(credentialsId: 'DOCKER_CRED', variable: 'DOCKER_CRED')]) {
+                    sh "docker login -u prince2796 -p ${DOCKER_CRED} "
             }
-            sh "docker push prince2796/spring-docker-kubernetes "
+            sh "docker push prince2796/spring-docker-kubernetes:0.0.1.RELEASE "
             }
             
         }
