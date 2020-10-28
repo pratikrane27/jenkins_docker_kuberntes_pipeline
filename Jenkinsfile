@@ -20,7 +20,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker build -t prince2796/spring-docker-kubernetes . "
+                sh "docker build -t prince2796/spring-docker-kubernetes:alphine.1 . "
             }
         }
         stage("Docker push") {
@@ -28,7 +28,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DOCKER_CRED', variable: 'DOCKER_CRED')]) {
                     sh "docker login -u prince2796 -p ${DOCKER_CRED} "
             }
-            sh "docker push prince2796/spring-docker-kubernetes "
+            sh "docker push prince2796/spring-docker-kubernetes:alphine.1 "
             }
             
         }
