@@ -32,5 +32,18 @@ pipeline {
             }
             
         }
+        stage("Deploy on gke") {
+            steps {
+                step <object of type com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder>
+            }
+            post {
+                success {
+                    echo "Deployed successfully on gcp"
+                }
+                failure {
+                    echo "fail to deploy"
+                }
+            }
+        }
     }
 }
