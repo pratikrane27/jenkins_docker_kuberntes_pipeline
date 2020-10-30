@@ -44,7 +44,7 @@ pipeline {
                step([$class:'com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder',
                     projectID: env.PROJECT_ID,
                     clusterName: env.CLUSTER_NAME,
-                    zone: env.LOCATION
+                    zone: env.LOCATION,
                     manifestPattern: 'deployment.yml',
                     credentialsId: env.CREDENTIALS_ID,
                     verifyDeployments: true
