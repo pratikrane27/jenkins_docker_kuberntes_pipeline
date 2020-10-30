@@ -34,7 +34,15 @@ pipeline {
         }
         stage("Deploy on gke") {
             steps {
-                step <object of type com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder>
+               step([$class:'KubernetesEngineBuilder',
+                    projectID: "thinking-field-271717",
+                    clusterName: "cluster-1",
+                    zone: "us-central1-c",
+                    manifestPattern: 'deployment.yml',
+                    credentialsId: "gke",
+                    verifyDeployments: true
+
+               ])
             }
             post {
                 success {
