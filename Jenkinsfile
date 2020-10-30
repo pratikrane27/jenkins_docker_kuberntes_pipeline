@@ -3,6 +3,13 @@ pipeline {
     tools {
         maven "maven"
     }
+    environment {
+        PROJECT_ID = 'thinking-field-271717'
+        CREDENTIALS_ID = 'gke'
+        CLUSTER_NAME = 'cluster-1'
+        LOCATION = 'us-central1-c'
+
+    }
     stages {
         stage("Building maven project") {
             steps {
@@ -34,12 +41,12 @@ pipeline {
         }
         stage("Deploy on gke") {
             steps {
-               step([$class:'KubernetesEngineBuilder',
-                    projectID: "thinking-field-271717",
-                    clusterName: "cluster-1",
-                    zone: "us-central1-c",
+               step([$class:'com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder',
+                    projectID: env.PROJECT_ID,
+                    clusterName: env.CLUSTER_NAME,
+                    zone: env.LOCATION
                     manifestPattern: 'deployment.yml',
-                    credentialsId: "gke",
+                    credentialsId: env.CREDENTIALS_ID,
                     verifyDeployments: true
 
                ])
