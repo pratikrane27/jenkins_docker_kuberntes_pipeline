@@ -6,7 +6,7 @@ pipeline {
     environment {
         PROJECT_ID = 'thinking-field-271717'
         CREDENTIALS_ID = 'gke'
-        CLUSTER_NAME = 'cluster-1'
+        CLUSTER_NAME = 'springdocker'
         LOCATION = 'us-central1-c'
 
     }
